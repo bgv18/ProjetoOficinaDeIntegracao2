@@ -1,6 +1,10 @@
 # ProjetoOficinaDeIntegracao2
 
   Projeto criado para a disciplina de Oficina de Integração da UTFPR-CP
+  
+  Alunos
+  - Bruno Guerra Vieira
+  - Igor Bregagnoli
 
   ## 🧪 Tecnologias
 
