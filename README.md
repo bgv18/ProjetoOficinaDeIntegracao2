@@ -31,6 +31,7 @@
   ```
  
  ## Requisitos do sistema
+ Projeto visa o controle de terras de determinados clientes.
  
     - Login(autenticação)
     - Cadastro usuario
