@@ -8,6 +8,7 @@
 
   - [NodeJs](https://nodejs.org/en/)
   - [React](reactjs.org)
+  - [Express](https://expressjs.com)
   - [MySql](https://www.mysql.com)
   
   Para testes:
@@ -34,7 +35,6 @@
  Projeto visa o controle de terras de determinados clientes.
  
     - Login(autenticação)
-    - Cadastro usuario
     - Modificar usuario
     - Cadastrar clientes
     - Visualizar clientes
