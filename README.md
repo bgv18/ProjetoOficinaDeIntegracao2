@@ -35,7 +35,7 @@
  Projeto visa o controle de terras de determinados clientes.
  
     - Login(autenticação)
-    - Modificar usuario
+    - Cadastro usuario
     - Cadastrar clientes
     - Visualizar clientes
     - Cadastrar terras
