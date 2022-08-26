@@ -7,7 +7,11 @@
   O projeto foi desenvolvido usando as seguintes tecnologias:
 
   - [NodeJs](https://nodejs.org/en/)
+  - [React](reactjs.org)
   - [MySql](https://www.mysql.com)
+  
+  Para testes:
+  - [Jest](https://jestjs.io/)
 
   ## 🚀 Getting started
 
