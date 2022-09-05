@@ -27,11 +27,19 @@
   ```
 
   Siga os passos abaixo
-  ```bash
-  #Instalação das dependencias
+  ```
+  # Abra a pasta backend e instale as dependências
+  $ cd backend
   $ yarn
-
-  # Inicialize
+  
+  # Inicialize o back-end
+  $ yarn start
+  
+  # Abra a pasta frontend e instale as dependências
+  $ cd frontend
+  $ yarn
+  
+  # Inicialize o front-end
   $ yarn start
   ```
  
@@ -41,11 +49,9 @@
     - Login(autenticação)
     - Cadastro usuario
     - Cadastrar clientes
-    - Visualizar clientes
+    - Busca de clientes
     - Cadastrar terras
-    - Visualizar terras
-    - Visualizar cidades
-    - Relatorios especificos para o sistema
+    - Consultar terras por cliente, cidade ou condicao
   
   ## Diagrama do projeto
   <div align="center">
