@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Cidades } from "./pages/Cidades/Cidades";
 import { Clientes } from "./pages/Clientes/Clientes";
 

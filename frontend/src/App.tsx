@@ -7,7 +7,6 @@ import { CheckAuthentication } from "./components/CheckAuthentication";
 import { AppRoutes } from "./AppRoutes";
 import { Cidades } from "./pages/Cidades/Cidades";
 import { Clientes } from "./pages/Clientes/Clientes";
-import React from "react";
 
 const App = () => {
   return (

@@ -14,7 +14,6 @@ import MenuItem from "@mui/material/MenuItem";
 import Stack from "@mui/material/Stack";
 import { useScrollTrigger } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import React from "react";
 
 type NavBarProps = {
   children?: React.ReactElement;
