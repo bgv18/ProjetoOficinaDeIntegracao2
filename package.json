@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/bgv18/ProjetoOficinaDeIntegracao2/issues"
   },
-  "homepage": "https://github.com/bgv18/ProjetoOficinaDeIntegracao2#readme"
+  "homepage": "https://github.com/bgv18/ProjetoOficinaDeIntegracao2#readme",
+  "devDependencies": {
+    "jest": "^29.0.2"
+  }
 }
