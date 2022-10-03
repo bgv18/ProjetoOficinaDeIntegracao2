@@ -11,7 +11,7 @@ function Login() {
   const [email, setEmail] = useState();
   const [senha, setSenha] = useState();
   const [carregando, setCarregando] = useState(0);
-  const baseURL = "http://localhost:8080/auth/cadastrar";
+  const baseURL = "http://localhost:3001/auth";
 
   const dispatch = useDispatch();
   const history = useHistory();

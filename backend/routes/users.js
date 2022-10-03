@@ -2,24 +2,28 @@ const express = require("express");
 const router = express.Router();
 const {Users} = require("../models");
 const bcrypt = require("bcrypt");
+const {sign} = require("jsonwebtoken");
 
 router.post("/", async (req, res) => {
     const cadastro = req.body;
-    bcrypt.hash(cadastro.senha, 10).then((hash) => {
-        Users.create({
-            usuario_id: cadastro.usuario_id,
-            nome: cadastro.nome,
-            cnpj: cadastro.cnpj,
-            email: cadastro.email,
-            senha: hash,
+    const user = await Users.findOne({where: {email: cadastro.email}});
+    if(user){
+        res.json("E-mail já usado");
+    } else {
+        bcrypt.hash(cadastro.senha, 10).then((hash) => {
+            Users.create({
+                nome: cadastro.nome,
+                email: cadastro.email,
+                senha: hash,
+            });
+            res.json("Sucesso");
         });
-        res.json("Sucesso");
-    });
+    }
 });
 
 router.post("/login", async (req, res) => {
     const login = req.body;
-    const user = await Users.findOne({where: {usuario_id: login.usuario_id}});
+    const user = await Users.findOne({where: {email: login.email}});
     if(!user){
         res.json("Usuário não existe");
     } else {
@@ -27,7 +31,11 @@ router.post("/login", async (req, res) => {
             if(!match){
                 res.json({error: "Usário e/ou senha incorreto(s)"});
             } else {
-                res.json("Você se logou");
+                const accessToken = sign({
+                    nome: user.nome, id: user.id}, "utfsecret"
+                );
+                
+                res.json(accessToken);
             }
         });
     }

@@ -10,7 +10,7 @@ function Login() {
   const [email, setEmail] = useState();
   const [senha, setSenha] = useState();
   const [carregando, setCarregando] = useState(0);
-  const baseURL = "http://localhost:8080/auth/login";
+  const baseURL = "http://localhost:3001/auth/login";
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -37,12 +37,18 @@ function Login() {
       .then((res) => {
         setCarregando(0);
         toast.success("Seja bem vindo!");
+        if(res.data.error){
+          alert(res.data.error);
+        } else {
+          localStorage.setItem("accessToken", res.data);
+        }
         dispatch({
           type: "LOGIN",
           usuarioId: res.data.user._id,
           usuarioNome: res.data.user.nome,
           usuarioToken: res.data.token,
         });
+
         history.push("/home");
       })
       .catch((err) => {
