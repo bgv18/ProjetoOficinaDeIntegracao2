@@ -46,6 +46,7 @@ function Login() {
           type: "LOGIN",
           usuarioId: res.data.id,
           usuarioNome: res.data.nome,
+          usuarioToken: res.data.usuarioToken,
         });
 
         navigate("/dashboard");

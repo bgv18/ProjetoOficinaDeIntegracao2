@@ -17,9 +17,9 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/cadastrar" element={<CadastrarUsuario />} />
 
-          <Route path="dashboard/*" element={<DashboardHome />}>
-            <Route path="cadastroCliente" element={<CadastrarCliente />} />
-          </Route>
+          <Route path="dashboard/*" element={<DashboardHome />} />
+          <Route path="cadastroCliente" element={<CadastrarCliente />} />
+          
         </Routes>
       </PersistGate>
     </Provider>

@@ -32,7 +32,7 @@ function CadastrarCliente() {
     };
 
     axios
-      .post(baseURL, {
+      .post(baseURL, dadosCadastro, {
         headers: headers,
       })
       .then((res) => {
