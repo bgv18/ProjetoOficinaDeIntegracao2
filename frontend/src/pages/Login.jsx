@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Spinner } from "react-bootstrap";
 import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 
 function Login() {
@@ -13,7 +13,7 @@ function Login() {
   const baseURL = "http://localhost:3001/auth/login";
 
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   function auth() {
     setCarregando(1);
@@ -37,19 +37,18 @@ function Login() {
       .then((res) => {
         setCarregando(0);
         toast.success("Seja bem vindo!");
-        if(res.data.error){
+        if (res.data.error) {
           alert(res.data.error);
         } else {
           localStorage.setItem("accessToken", res.data);
         }
         dispatch({
           type: "LOGIN",
-          usuarioId: res.data.user._id,
-          usuarioNome: res.data.user.nome,
-          usuarioToken: res.data.token,
+          usuarioId: res.id,
+          usuarioNome: res.nome,
         });
 
-        history.push("/home");
+        navigate("/dashboard");
       })
       .catch((err) => {
         toast.error(err.response.data.error);
@@ -59,9 +58,9 @@ function Login() {
 
   return (
     <>
-      {useSelector((state) => state.usuarioLogado) > 0 ? (
-        <Redirect to="/anotacoes" />
-      ) : null}
+      {useSelector((state) => state.usuarioLogado) > 0
+        ? navigate("/dashboard")
+        : null}
       <div>
         <Toaster />
       </div>
@@ -93,11 +92,11 @@ function Login() {
               <span className="visually-hidden">Carregando...</span>
             </Spinner>
           ) : (
-            <a>
+            <div>
               <button className="main__acessar" onClick={auth}>
                 Acessar
               </button>
-            </a>
+            </div>
           )}
           <span className="criar__conta">
             <span className="criar__conta" style={{ color: "#2C7AED" }}>

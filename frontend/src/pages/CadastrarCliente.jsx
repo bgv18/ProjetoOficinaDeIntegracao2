@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Spinner } from "react-bootstrap";
 import toast, { Toaster } from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
 import "../styles/cadastrar.css";
 
 function CadastrarCliente() {
@@ -16,7 +16,6 @@ function CadastrarCliente() {
   const baseURL = "http://localhost:3001/clientes";
 
   const dispatch = useDispatch();
-  const history = useHistory();
   function cadastrar() {
     setCarregando(1);
 
@@ -42,7 +41,6 @@ function CadastrarCliente() {
       .then((res) => {
         setCarregando(0);
         toast.success("Cadastro realizado com sucesso");
-        history.push("/login");
       })
       .catch((err) => {
         toast.error(err.response.data.error);
@@ -77,7 +75,7 @@ function CadastrarCliente() {
               name="cpfOuCnpj"
               className="form-control input"
               id="cpfOuCnpj"
-              value={nome}
+              value={cpfOuCnpj}
               onChange={(e) => setCpfOuCnpj(e.target.value)}
               required
             />

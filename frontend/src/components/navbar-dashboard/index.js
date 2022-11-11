@@ -49,11 +49,11 @@ function NavbarDashboard(props) {
             </li>
           </ul>
         </nav>
-        <a>
+        <div>
             <button>
               Logout
             </button>
-        </a>
+        </div>
       </div>
     </header>
   );
