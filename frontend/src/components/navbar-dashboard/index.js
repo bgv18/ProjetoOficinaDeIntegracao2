@@ -25,7 +25,7 @@ function NavbarDashboard(props) {
             </li>
             <li>
               <Link
-                to="/Clientes"
+                to="/cadastroCliente"
                 style={
                   props.paginaSelecionada === "clientes"
                     ? { color: "#2c7aed" }

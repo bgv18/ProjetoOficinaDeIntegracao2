@@ -44,8 +44,8 @@ function Login() {
         }
         dispatch({
           type: "LOGIN",
-          usuarioId: res.id,
-          usuarioNome: res.nome,
+          usuarioId: res.data.id,
+          usuarioNome: res.data.nome,
         });
 
         navigate("/dashboard");

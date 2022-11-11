@@ -2,8 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Spinner } from "react-bootstrap";
 import toast, { Toaster } from "react-hot-toast";
-import { useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
 import "../styles/cadastrar.css";
 
 function CadastrarCliente() {
@@ -15,7 +13,6 @@ function CadastrarCliente() {
   const [carregando, setCarregando] = useState(0);
   const baseURL = "http://localhost:3001/clientes";
 
-  const dispatch = useDispatch();
   function cadastrar() {
     setCarregando(1);
 
@@ -35,7 +32,7 @@ function CadastrarCliente() {
     };
 
     axios
-      .post(baseURL, dadosCadastro, {
+      .post(baseURL, {
         headers: headers,
       })
       .then((res) => {
