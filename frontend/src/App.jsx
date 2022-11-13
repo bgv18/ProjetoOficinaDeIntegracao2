@@ -1,37 +1,7 @@
-import { Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
-import DashboardHome from "./pages/DashboardHome";
-import Home from "./pages/Home";
-import CadastrarUsuario from "./pages/Cadastrar";
-import CadastrarCliente from "./pages/CadastrarCliente";
-import { Provider } from "react-redux";
-import { persistor, store } from "../src/store";
-import { PersistGate } from "redux-persist/integration/react";
+import Routes from "./routes";
 
 function App() {
-  return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cadastrar" element={<CadastrarUsuario />} />
-          <Route
-            path="dashboard/*"
-            element={() => (
-              <Auth element={<DashboardHome />} redirect={<Login />} />
-            )}
-          />
-          <Route
-            path="cadastroCliente"
-            element={() => (
-              <Auth element={<CadastrarCliente />} redirect={<Login />} />
-            )}
-          />
-        </Routes>
-      </PersistGate>
-    </Provider>
-  );
+  return <Routes />;
 }
 
 export default App;

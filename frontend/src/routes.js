@@ -6,9 +6,9 @@ import { persistor, store } from "../src/store";
 import Auth from "./components/auth";
 import Cadastrar from "./pages/Cadastrar";
 import DashboardHome from "./pages/DashboardHome";
-// import Livros from "./view/livros";
 import HomePage from "./pages/Home";
 import Login from "./pages/Login";
+import Clientes from "./pages/Clientes";
 
 function Routes() {
   return (
@@ -18,6 +18,11 @@ function Routes() {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/cadastrar" component={Cadastrar} />
+          <Route
+            exact
+            path="/clientes"
+            component={() => <Auth component={Clientes} redirect={Login} />}
+          />
           <Route
             exact
             path="/home"

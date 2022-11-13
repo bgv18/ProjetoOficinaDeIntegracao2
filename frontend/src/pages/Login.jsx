@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Spinner } from "react-bootstrap";
 import toast, { Toaster } from "react-hot-toast";
+import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
 
 function Login() {
@@ -13,7 +13,7 @@ function Login() {
   const baseURL = "http://localhost:3001/auth/login";
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const history = useHistory();
 
   function auth() {
     setCarregando(1);
@@ -49,7 +49,7 @@ function Login() {
           usuarioToken: res.data.usuarioToken,
         });
 
-        navigate("/dashboard");
+        history.push("/home");
       })
       .catch((err) => {
         toast.error(err.response.data.error);
@@ -60,7 +60,7 @@ function Login() {
   return (
     <>
       {useSelector((state) => state.usuarioLogado) > 0
-        ? navigate("/dashboard")
+        ? (<Redirect to="/home" />)
         : null}
       <div>
         <Toaster />

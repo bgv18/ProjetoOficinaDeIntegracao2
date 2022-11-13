@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Spinner } from "react-bootstrap";
 import toast, { Toaster } from "react-hot-toast";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Redirect, useHistory } from "react-router-dom";
 import "../styles/cadastrar.css";
 
 function CadastrarUsuario() {
@@ -13,7 +13,8 @@ function CadastrarUsuario() {
   const [carregando, setCarregando] = useState(0);
   const baseURL = "http://localhost:3001/auth";
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const history = useHistory();
   function cadastrar() {
     setCarregando(1);
 
@@ -37,7 +38,7 @@ function CadastrarUsuario() {
       .then((res) => {
         setCarregando(0);
         toast.success("Cadastro realizado com sucesso");
-        navigate("/login");
+        history.push("/login");
       })
       .catch((err) => {
         toast.error(err.response.data.error);
@@ -47,9 +48,9 @@ function CadastrarUsuario() {
 
   return (
     <>
-      {useSelector((state) => state.usuarioLogado) > 0 ? (
-        navigate("/dashboard")
-      ) : null}
+      {useSelector((state) => state.usuarioLogado) > 0
+        ? (<Redirect to="/anotacoes" />)
+        : null}
       <div>
         <Toaster />
       </div>
