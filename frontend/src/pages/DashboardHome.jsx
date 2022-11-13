@@ -7,6 +7,12 @@ import "../styles/dashboard-home.css";
 
 function DashboardHome() {
   const dispatch = useDispatch();
+  
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const usuarioToken = useSelector((state) => state.usuarioToken);
+
 
   function sair() {
     dispatch({ type: "LOGOUT" });

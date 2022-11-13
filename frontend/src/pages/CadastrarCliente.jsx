@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Spinner } from "react-bootstrap";
+import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import "../styles/cadastrar.css";
 
@@ -23,15 +24,19 @@ function CadastrarCliente() {
       estado: estado,
       pais: pais,
     };
+    
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const usuarioToken = useSelector((state) => state.usuarioToken);
 
-    const headers = {
-      "Access-Control-Allow-Headers": "Content-Type",
-      "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE",
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json; charset=UTF-8",
-    };
+    useEffect(() => {
+      const headers = {
+        "Content-Type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${usuarioToken}`,
+      };
 
-    axios
+      axios
       .post(baseURL, dadosCadastro, {
         headers: headers,
       })
@@ -42,7 +47,8 @@ function CadastrarCliente() {
       .catch((err) => {
         toast.error(err.response.data.error);
         setCarregando(0);
-      });
+      })
+    }, [show]);
   }
 
   return (

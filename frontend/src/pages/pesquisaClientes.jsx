@@ -2,24 +2,37 @@ import { Stack, Box } from "@mui/material";
 import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
 import axios from "axios";
 import { SearchBar } from "../../components/SearchBar";
+import { useEffect } from "react";
+import CadastrarCliente from "../../components/CadastrarCliente"
 
 const baseURL = "http://localhost:3001/clientes";
 
-async function pesquisarTodos() {
-  let res = await axios.get(baseURL);
-  let lstClientes = res.data;
-}
+useEffect(() => {
+  const headers = {
+    "Content-Type": "application/json; charset=UTF-8",
+    Authorization: `Bearer ${usuarioToken}`,
+  };
 
-async function pesquisarPorId(id) {
-  let res = await axios.get(baseURL + "/byId", id);
-  let lstClientes = res.data;
-}
-
-async function pesquisarPorNome(nome) {
-    let res = await axios.get(baseURL + "/byNome", nome);
-    let lstClientes = res.data;
+  async function pesquisarPorId(id) {
+    let res = await axios.get(baseURL + "/byId", id, { headers: headers });
+    lstClientes = res.data;
   }
 
+  async function pesquisarPorNome(nome) {
+    let res = await axios.get(baseURL + "/byNome", nome, { headers: headers });
+    lstClientes = res.data;
+  }
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const usuarioToken = useSelector((state) => state.usuarioToken);
+  const [cliente, setCliente] = useState([]);
+  let lstClientes = [];
+});
+
+let res = axios.get(baseURL, { headers: headers });
+lstClientes = res.data;
 const rows = (GridRowsProp = [lstClientes]);
 
 const columns = (GridColDef[2] = [
@@ -42,6 +55,12 @@ export const Clientes = () => {
           <DataGrid checkboxSelection rows={rows} columns={columns} />
         </Box>
       </Stack>
+      <div>
+        {cliente.map((item) => (
+          <CadastrarCliente item={item} />
+        ))}
+      </div>
+      {show && <CadastrarTarefa open={handleShow} close={handleClose} />}
     </Stack>
   );
 };

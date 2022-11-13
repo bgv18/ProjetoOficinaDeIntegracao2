@@ -16,10 +16,18 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cadastrar" element={<CadastrarUsuario />} />
-
-          <Route path="dashboard/*" element={<DashboardHome />} />
-          <Route path="cadastroCliente" element={<CadastrarCliente />} />
-          
+          <Route
+            path="dashboard/*"
+            element={() => (
+              <Auth element={<DashboardHome />} redirect={<Login />} />
+            )}
+          />
+          <Route
+            path="cadastroCliente"
+            element={() => (
+              <Auth element={<CadastrarCliente />} redirect={<Login />} />
+            )}
+          />
         </Routes>
       </PersistGate>
     </Provider>

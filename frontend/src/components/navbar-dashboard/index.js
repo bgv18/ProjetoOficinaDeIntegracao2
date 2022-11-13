@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import "./navbar.css";
 
 function NavbarDashboard(props) {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const usuarioToken = useSelector((state) => state.usuarioToken);
+
   return (
     <header>
       <Link to="/" className="logo-nav">
@@ -31,6 +36,7 @@ function NavbarDashboard(props) {
                     ? { color: "#2c7aed" }
                     : null
                 }
+
               >
                 Clientes
               </Link>
@@ -49,11 +55,17 @@ function NavbarDashboard(props) {
             </li>
           </ul>
         </nav>
-        <div>
-            <button>
+        <a>
+          {props.sair ? (
+            <button
+              className="btn__criar"
+              id="botaoSair"
+              onClick={props.sair}
+            >
               Logout
             </button>
-        </div>
+          ) : null}
+        </a>
       </div>
     </header>
   );
