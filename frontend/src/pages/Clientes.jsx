@@ -14,7 +14,7 @@ function Clientes() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const usuarioToken = useSelector((state) => state.usuarioToken);
-  const [clientes, setClientes] = useState([]);
+  const [costumer, setCostumer] = useState([]);
   const lstClientes = [];
 
   useEffect(() => {
@@ -29,10 +29,10 @@ function Clientes() {
       })
       .then((res) => {
         console.log(res.data.clientes);
-        setClientes(res.data.clientes);
+        setCostumer(res.data.clientes);
       })
       .catch((err) => {
-        toast.error(err.response.data.error);
+        toast.error("Erro ao carregar clientes");
       });
   }, [show]);
 
@@ -47,7 +47,7 @@ function Clientes() {
         criar={handleShow}
       />
       <div className="tarefas-content">
-        {clientes.map((item) => (
+        {costumer?.map((item) => (
           <Cliente item={item} />
         ))}
       </div>

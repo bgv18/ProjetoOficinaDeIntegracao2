@@ -8,7 +8,7 @@ import "./cliente.css";
 
 var id;
 
-const baseURL = "http://localhost:8080/api/tarefas";
+const baseURL = "http://localhost:3001/clientes";
 
 function Cliente(props) {
   const [show, setShow] = useState(false);
@@ -16,7 +16,7 @@ function Cliente(props) {
   const handleShow = () => setShow(true);
   const usuarioToken = useSelector((state) => state.usuarioToken);
 
-  id = props.item._id;
+  id = props.item.id;
 
   var rand = Math.floor(Math.random() * 360);
   function excluir(id) {
@@ -31,7 +31,7 @@ function Cliente(props) {
           headers: headers,
         })
         .then((res) => {
-          toast.success("Tarefa deletada com sucesso");
+          toast.success("Cliente deletado com sucesso");
           window.location.reload();
         })
         .catch((err) => {
@@ -49,12 +49,6 @@ function Cliente(props) {
       <div className="card">
         <div className="card-body">
           <div className="title-btn">
-            <h3
-              className="card-title"
-              style={{ fontWeight: "700", marginTop: 8 }}
-            >
-              {props.item.materia}
-            </h3>
             <button
               className="btn btnDetalhes"
               id="dropdownMenuButton1"
@@ -69,7 +63,7 @@ function Cliente(props) {
               <li
                 className="dropdown-item"
                 onClick={() => {
-                  excluir(props.item._id);
+                  excluir(props.item.id);
                 }}
               >
                 Excluir
@@ -85,9 +79,12 @@ function Cliente(props) {
             className="card-title"
             style={{ fontWeight: "700", marginTop: -4 }}
           >
-            {props.item.titulo}
+            {props.item.nome}
           </h5>
-          <p className="card-text">{props.item.descricao}</p>
+          <p className="card-text">{props.item.CpfOuCnpj}</p>
+          <p className="card-text">{props.item.cidade}</p>
+          <p className="card-text">{props.item.estado}</p>
+          <p className="card-text">{props.item.pais}</p>
         </div>
       </div>
       {show == true && (
