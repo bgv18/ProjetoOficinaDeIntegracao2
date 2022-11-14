@@ -4,9 +4,9 @@ const {Clientes} = require("../models");
 
 router.get("/", async (req, res) => {
     try {
-      const clientes = await Clientes.find();
+      const clientes = await Clientes.findAll();
   
-      return res.send({ clientes });
+      return res.json({ clientes });
     } catch (err) {
       return res.status(400).send({ error: "Erro ao carregar clientes" });
     }

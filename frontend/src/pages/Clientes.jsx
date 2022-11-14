@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
-import CadastrarClientes from "../components/CadastrarClientes";
+import ModalCliente from "../components/CadastrarClientes";
 import NavBar from "../components/navbar-dashboard";
 import Cliente from "../components/Cliente";
 import "../styles/clientes.css";
@@ -47,11 +47,14 @@ function Clientes() {
         criar={handleShow}
       />
       <div className="tarefas-content">
+        <button onClick={<ModalCliente/>}>
+          Cadastrar Cliente
+        </button>
         {costumer?.map((item) => (
           <Cliente item={item} />
         ))}
       </div>
-      {show && <CadastrarClientes open={handleShow} close={handleClose} />}
+      {show && <ModalCliente open={handleShow} close={handleClose} />}
     </>
   );
 }
