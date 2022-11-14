@@ -3,9 +3,14 @@ const router = express.Router();
 const {Clientes} = require("../models");
 
 router.get("/", async (req, res) => {
-    const listaClientes = await Clientes.findAll();
-    res.json(listaClientes);
-});
+    try {
+      const clientes = await Clientes.find();
+  
+      return res.send({ clientes });
+    } catch (err) {
+      return res.status(400).send({ error: "Erro ao carregar clientes" });
+    }
+  });
 
 router.get("/byId/:id", async (req, res) => {
     const id = req.params.id;
