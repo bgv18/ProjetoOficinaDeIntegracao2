@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const {Clientes} = require("../models");
+const {validateToken} = require("../middlewares/AuthMiddleware");
 
 router.get("/", async (req, res) => {
     try {
-      const clientes = await Clientes.findAll();
-  
-      return res.json({ clientes });
-    } catch (err) {
-      return res.status(400).send({ error: "Erro ao carregar clientes" });
+        const listaClientes = await Clientes.findAll();
+        res.json(listaClientes);
+    } catch(err){
+        res.status(400).send({error: "Erro ao carregar clientes"});
     }
-  });
+});
 
 router.get("/byId/:id", async (req, res) => {
     const id = req.params.id;
@@ -48,7 +48,7 @@ router.get("/byPais/:pais", async (req, res) => {
     res.json(cliente);
 });
 
-router.post("/", async (req, res) => {
+router.post("/", validateToken, async (req, res) => {
     const cliente = req.body;
     await Clientes.create(cliente);
     res.json(cliente);
