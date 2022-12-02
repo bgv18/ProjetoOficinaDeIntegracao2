@@ -9,6 +9,7 @@ import DashboardHome from "./pages/DashboardHome";
 import HomePage from "./pages/Home";
 import Login from "./pages/Login";
 import Clientes from "./pages/Clientes";
+import Terras from ".pages/Terras";
 
 function Routes() {
   return (
@@ -22,6 +23,11 @@ function Routes() {
             exact
             path="/clientes"
             component={() => <Auth component={Clientes} redirect={Login} />}
+          />
+          <Route
+            exact
+            path="/terras"
+            component={() => <Auth component={Terras} redirect={Login} />}
           />
           <Route
             exact
