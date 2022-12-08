@@ -49,7 +49,7 @@ function CadastrarUsuario() {
   return (
     <>
       {useSelector((state) => state.usuarioLogado) > 0
-        ? (<Redirect to="/anotacoes" />)
+        ? (<Redirect to="/home" />)
         : null}
       <div>
         <Toaster />

@@ -9,7 +9,7 @@ import DashboardHome from "./pages/DashboardHome";
 import HomePage from "./pages/Home";
 import Login from "./pages/Login";
 import Clientes from "./pages/Clientes";
-import Terras from ".pages/Terras";
+import Terras from "./pages/Terras";
 
 function Routes() {
   return (
