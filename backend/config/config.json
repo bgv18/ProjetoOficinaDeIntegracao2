@@ -1,21 +1,21 @@
 {
   "development": {
     "username": "root",
-    "password": "Cds123456",
+    "password": "18Bruno18*",
     "database": "projetodeintegracao",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "Cds123456",
+    "password": "18Bruno18*",
     "database": "projetodeintegracao",
     "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": "Cds123456",
+    "password": "18Bruno18*",
     "database": "projetodeintegracao",
     "host": "localhost",
     "dialect": "mysql"

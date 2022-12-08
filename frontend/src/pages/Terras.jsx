@@ -6,19 +6,19 @@ import { useSelector } from "react-redux";
 import {Box, Typography} from "@mui/material"
 import { DataGrid } from "@mui/x-data-grid"
 import NavBar from "../components/navbar-dashboard";
+import { color } from "@mui/system";
 
 const baseURL = "http://localhost:3001/terras";
 
 function Terras() {
-  const [show, setShow] = useState(false);
   const usuarioToken = useSelector((state) => state.usuarioToken);
-  const [place, setPlace] = useState([]);
+  const [places, setPlaces] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   
   const [terra, setTerra] = useState("");
-  const [cidade, setCidade] = useState();
-  const [cliente, setCliente] = useState();
-  const [condicao, setCondicao] = useState();
+  const [cidade, setCidade] = useState("");
+  const [cliente, setCliente] = useState("");
+  const [condicao, setCondicao] = useState("");
   
   const dadosTerras = {
     terra: terra,
@@ -27,7 +27,7 @@ function Terras() {
     condicao: condicao,
   };
   
-  const cadastrarTerra = (dadosTerras) => {
+  function cadastrarTerra(dadosTerras){
     if (dadosTerras.terra != ""){
       axios
         .post(baseURL, dadosTerras, {
@@ -38,7 +38,7 @@ function Terras() {
           setModalShow(false);
         })
         .catch((err) => {
-          toast.error("Erro ao cadastrar terra2");
+          toast.error(err);
         });
     }
   }
@@ -56,6 +56,7 @@ function Terras() {
   }, []);
   
   const columns = useMemo(() => [
+    {field:'id', headerName: 'ID', width:100},
     {field:'terra', headerName: 'Terra', width:200},
     {field:'cidade', headerName: 'Cidade', width:500},
     {field:'cliente', headerName: 'Cliente', width:600},
@@ -68,18 +69,11 @@ function Terras() {
       Authorization: `Bearer ${usuarioToken}`,
     };
 
-    axios
-      .get(baseURL, {
-        headers: headers,
-      })
-      .then((res) => {
-        console.log(res.data.listaTerras);
-        setPlace(res.data.listaTerras);
-      })
-      .catch((err) => {
-        toast.error("Erro ao carregar terras");
-      });
-  }, [show]);
+    fetch(baseURL, {headers: headers})
+      .then((data) => data.json())
+      .then ((data) => setPlaces(data))
+  
+  }, []);
 
   return (
     <>
@@ -102,13 +96,14 @@ function Terras() {
             Terras
         </Typography>
         <DataGrid
-        rows={place}
-        columns={columns}
-        experimentalFeatures={{ newEditingApi: true }}
-        // getRowId={row=>row.terras}
+          columns={columns}
+          rows={places}
+          experimentalFeatures={{ newEditingApi: true }}
+          getRowId={row => row.id}
         />
       <button 
         onClick={() => setModalShow(true)}
+        style={{color: 'black'}}
       >
         Cadastrar Terra
       </button>

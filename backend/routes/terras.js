@@ -10,23 +10,23 @@ router.post("/", async (req, res) => {
     const cliente = terra.cliente;
     const cidadeTerra = await Clientes.findOne({where: {cidade : cidade}});
     const clienteDono = await Clientes.findOne({where: {nome : cliente}});
-    if(cidadeTerra == null || clienteDono == null){
-        switch (cidadeTerra, clienteDono){
-            case (cidadeTerra == null) && (clienteDono == null) :
-                res.json("A cidade e o cliente não existem");
-                break;
-            case (cidadeTerra == null) :
-                res.json("A cidade não existe");
-                break;
-            case (clienteDono == null) :
-                res.json("O cliente não existe");
-                break;
-            default :
-                res.json("Erro");
-        }
-    } else {
-        await Terras.create(terra);
-    }
+    await Terras.create(terra);
+    //if(cidadeTerra == null || clienteDono == null){
+    //    switch (cidadeTerra, clienteDono){
+    //        case (cidadeTerra == null) && (clienteDono == null) :
+    //            res.json("A cidade e o cliente não existem");
+    //            break;
+    //        case (cidadeTerra == null) :
+    //            res.json("A cidade não existe");
+    //            break;
+    //        case (clienteDono == null) :
+    //            res.json("O cliente não existe");
+    //            break;
+    //        default :
+    //            res.json("Erro");
+     //   }
+    //} else {
+    //}
 });
 
 router.get("/", async (req, res) => {
